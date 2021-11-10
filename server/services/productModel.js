@@ -1,7 +1,7 @@
 const query = require('../query');
 const connection = require('../connection');
-const categoryModel = require('../models/categories');
-const subcategoryModel = require('../models/subcategories');
+const categoryModel = require('../schema/categories');
+const subcategoryModel = require('../schema/subcategories');
 
 module.exports.getCategoryList = () => {
     return new Promise( (resolve, reject) => {

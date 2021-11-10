@@ -3,7 +3,7 @@ var router = express.Router();
 var userController = require('../controllers/userController');
 var productController = require('../controllers/productController');
 
-// router.post('/register', userController.register);
+router.post('/register', userController.register);
 
 router.post('/login', userController.login);
 
