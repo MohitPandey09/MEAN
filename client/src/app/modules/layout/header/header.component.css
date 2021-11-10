@@ -1,0 +1,35 @@
+.profile-dropdown a {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  display: inline-block;
+}
+.profile-dropdown ul {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+.profile-dropdown ul li {
+  display: inline-block;
+}
+.profile-dropdown ul li:hover {
+  background: rgb(240, 185, 7);
+}
+.profile-dropdown ul li:hover ul {
+  display: block;
+}
+.profile-dropdown ul li ul {
+  position: absolute;
+  width: 200px;
+  display: none;
+}
+.profile-dropdown ul li ul li {
+  background: #555;
+  display: block;
+}
+.profile-dropdown ul li ul li a {
+  display: block !important;
+}
+.profile-dropdown ul li ul li:hover {
+  background: #666;
+}

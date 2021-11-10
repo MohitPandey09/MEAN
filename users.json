@@ -1,0 +1,15 @@
+[
+	{
+		"role": 1,
+		"name": "Mohit Pandey",
+		"email": "pandeymp1996@gmail.com",
+		"password": "admin",
+		"address": "xyz",
+		"city": "Haldwani",
+		"state": "Uttarakhand",
+		"zip": "263139",
+		"country": "India",
+		"mobile": "8477058466",
+		"email_verified": 1
+	}
+]

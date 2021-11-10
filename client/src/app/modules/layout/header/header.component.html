@@ -1,0 +1,180 @@
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>hello.colorlib@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>+65 11.188.888
+                </div>
+            </div>
+            <div class="ht-right">
+                <ng-template *ngIf="!isLoggedIn">
+                    <a [routerLink]="['/login']" routerLinkActive="router-link-active"  href="javascript:void(0);" class="login-panel">
+                        <i class="fa fa-user"></i>Login
+                    </a>
+                    <a [routerLink]="['/register']" routerLinkActive="router-link-active"  href="javascript:void(0);" class="login-panel">
+                        <i class="fa fa-user"></i>Register
+                    </a>
+                </ng-template>
+
+                <!-- <div class="lan-selector profile-dropdown">
+                    <ul class="dropdown">
+                        <li><a href="#">Hello {{ userData.fname }}</a>
+                            <ul>
+                                <li><a href="#">Profile</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div> -->
+                <div class="lan-selector">
+                    <select class="language_drop" name="countries" id="countries" style="width:300px;">
+                        <option value='yt' data-title="English"><i class="fa fa-user-circle" aria-hidden="true"></i>
+                            Hello {{ userData.fname }}</option>
+                        <option value='yu' data-image="./assets/img/flag-2.jpg" data-imagecss="flag yu"
+                            data-title="German">Profile</option>
+                    </select>
+                </div>
+                
+                <a (click)="logout()" routerLinkActive="router-link-active"  href="javascript:void(0);" class="login-panel">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+                </a>
+                    
+                <!-- closed for now -->
+                <!-- <div class="lan-selector">
+                    <select class="language_drop" name="countries" id="countries" style="width:300px;">
+                        <option value='yt' data-image="./assets/img/flag-1.jpg" data-imagecss="flag yt"
+                            data-title="English">English</option>
+                        <option value='yu' data-image="./assets/img/flag-2.jpg" data-imagecss="flag yu"
+                            data-title="German">German </option>
+                    </select>
+                </div> -->
+                <div class="top-social">
+                    <a href="javascript:void(0);"><i class="ti-facebook"></i></a>
+                    <a href="javascript:void(0);"><i class="ti-twitter-alt"></i></a>
+                    <a href="javascript:void(0);"><i class="ti-linkedin"></i></a>
+                    <a href="javascript:void(0);"><i class="ti-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="./index.html"><img src="{{ assetsUrl }}/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <div class="advanced-search">
+                        <button type="button" class="category-btn">All Categories</button>
+                        <div class="input-group">
+                            <input type="text" placeholder="What do you need?">
+                            <button type="button"><i class="ti-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 text-right col-md-3">
+                    <ul class="nav-right">
+                        <li class="heart-icon">
+                            <a href="javascript:void(0);">
+                                <i class="icon_heart_alt"></i>
+                                <span>1</span>
+                            </a>
+                        </li>
+                        <li class="cart-icon">
+                            <a href="javascript:void(0);">
+                                <i class="icon_bag_alt"></i>
+                                <span>3</span>
+                            </a>
+                            <div class="cart-hover">
+                                <div class="select-items">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="si-pic"><img src="{{ assetsUrl }}/img/select-product-1.jpg" alt=""></td>
+                                                <td class="si-text">
+                                                    <div class="product-selected">
+                                                        <p>$60.00 x 1</p>
+                                                        <h6>Kabino Bedside Table</h6>
+                                                    </div>
+                                                </td>
+                                                <td class="si-close">
+                                                    <i class="ti-close"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="si-pic"><img src="{{ assetsUrl }}/img/select-product-2.jpg" alt=""></td>
+                                                <td class="si-text">
+                                                    <div class="product-selected">
+                                                        <p>$60.00 x 1</p>
+                                                        <h6>Kabino Bedside Table</h6>
+                                                    </div>
+                                                </td>
+                                                <td class="si-close">
+                                                    <i class="ti-close"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="select-total">
+                                    <span>total:</span>
+                                    <h5>$120.00</h5>
+                                </div>
+                                <div class="select-button">
+                                    <a href="javascript:void(0);" class="primary-btn view-card">VIEW CARD</a>
+                                    <a href="javascript:void(0);" class="primary-btn checkout-btn">CHECK OUT</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cart-price">$150.00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-item">
+        <div class="container">
+            <div class="nav-depart">
+                <div class="depart-btn">
+                    <i class="ti-menu"></i>
+                    <span>All departments</span>
+                    <ul class="depart-hover">
+                            <li *ngFor="let category of categoryData;" class="active">
+                                <a href="javascript:void(0);" [routerLink]="['/product/category/', category._id]"  
+                                routerLinkActive="router-link-active">{{ category.cat_name }}</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+            <nav class="nav-menu mobile-menu">
+                <ul>
+                    <li class="active"><a href="javascript:void(0);">Home</a></li>
+                    <li><a href="javascript:void(0);">Shop</a></li>
+                    <li><a href="javascript:void(0);">Collection</a>
+                        <ul class="dropdown">
+                            <li *ngFor="let category of categoryData;">
+                                <a href="javascript:void(0);" [routerLink]="['/product/category/', category._id]"  
+                                routerLinkActive="router-link-active">{{ category.cat_name }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="javascript:void(0);">Blog</a></li>
+                    <li><a href="javascript:void(0);">Contact</a></li>
+                    <li><a href="javascript:void(0);">Pages</a>
+                        <ul class="dropdown">
+                            <li><a href="javascript:void(0);">Blog Details</a></li>
+                            <li><a href="javascript:void(0);">Shopping Cart</a></li>
+                            <li><a href="javascript:void(0);">Checkout</a></li>
+                            <li><a href="javascript:void(0);">Faq</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </div>
+</header>

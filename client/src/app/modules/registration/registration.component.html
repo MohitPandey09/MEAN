@@ -1,0 +1,153 @@
+<!-- Page Preloder -->
+<!-- <div id="preloder">
+    <div class="loader"></div>
+</div> -->
+
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <a [routerLink]="['/home']" routerLinkActive="router-link-active" href="javascript:void(0);">
+                        <i class="fa fa-home"></i> Home
+                    </a>
+                    <span>Register</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Form Section Begin -->
+
+<!-- Register Section Begin -->
+<div class="register-login-section spad">
+    <div class="container">
+        <div *ngIf="errorMsg" class="alert alert-danger alert-dismissible">
+            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="close" (click)="clearErrorMessage()"><span aria-hidden="true">&times;</span>
+            </button>
+            {{ errorMsg }}
+        </div>
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="register-form">
+                    <h2>Register</h2>
+                    <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+                        <div class="group-input">
+                            <label for="name">Username *</label>
+                            <input type="text" id="name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.name.errors.required">Username is required</div>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label for="email">Email address *</label>
+                            <input type="text" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.email.errors.required">Email address is required</div>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label for="password">Password *</label>
+                            <input type="text" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label for="confirm_password">Confirm Password *</label>
+                            <input type="text" id="confirm_password" formControlName="confirm_password" [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }">
+                            <div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.confirm_password.errors.required">Confirm Password is required</div>
+                                <div *ngIf="f.confirm_password.errors.mustMatch">Password must match</div>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label for="mobile">Mobile No. *</label>
+                            <input type="text" id="mobile" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }">
+                            <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.mobile.errors.required">Mobile No. is required</div>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.city.errors.required">City is required</div>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label for="state">State *</label>
+                            <input type="text" id="state" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                            <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.state.errors.required">State is required</div>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label for="zip">Zip Code *</label>
+                            <input type="text" id="zip" formControlName="zip" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }">
+                            <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.zip.errors.required">Zip Code is required</div>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label for="country">Country *</label>
+                            <input type="text" id="country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                            <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.country.errors.required">Country is required</div>
+                            </div>
+                        </div>
+                        <div class="group-input">
+                            <label for="address">Address *</label>
+                            <input type="text" id="address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                <div *ngIf="submitted && f.address.errors.required">Address is required</div>
+                            </div>
+                        </div>
+                        <input type="submit" class="site-btn register-btn" value="REGISTER">
+                    </form>
+                    <div class="switch-login">
+                        <a [routerLink]="['/login']" routerLinkActive="router-link-active" href="javascript:void(0);"
+                            class="or-login">Or Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Register Form Section End -->
+
+<!-- Partner Logo Section Begin -->
+<!-- <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-1.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-2.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-3.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-4.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="img/logo-carousel/logo-5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+<!-- Partner Logo Section End -->
