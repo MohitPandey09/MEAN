@@ -7,10 +7,10 @@ router.post('/register', userController.register);
 
 router.post('/login', userController.login);
 
-// router.post('/getCategoryList', productController.getCategoryList);
+router.post('/getCategories', productController.getCategoryList);
 
-// router.post('/getSubCategoryList', productController.getSubCategoryList);
+router.post('/getSubCategories', productController.getSubCategoryList);
 
-// router.post('/getProductList', productController.getProductList);
+router.post('/getProducts', productController.getProductList);
 
 module.exports = router;

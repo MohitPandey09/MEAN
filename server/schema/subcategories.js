@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var subcategorySchema = mongoose.Schema({
-    cat_id: [{
+    categoryID: [{
         type: Schema.Types.ObjectId,
         ref: 'Categories',
     }],
-    subcat_name: String,
+    subcategoryName: String,
     descripton: String,
     image: String,
     created_at: { type: Date, default: Date.now },

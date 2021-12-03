@@ -22,15 +22,15 @@ export class ApiService {
     }
 
     getCategoryList(): Observable<any> {
-        return this.http.post(this.apiUrl + 'getCategoryList', { headers: this.headers });
+        return this.http.post(this.apiUrl + 'getCategories', { headers: this.headers });
     }
 
     getSubCategoryList(id: any): Observable<any> {
         console.log('called', id);
-        return this.http.post(this.apiUrl + 'getSubCategoryList', id, { headers: this.headers });
+        return this.http.post(this.apiUrl + 'getSubCategories', id, { headers: this.headers });
     }
 
-    getProductList(id: any): Observable<any> {
-        return this.http.post(this.apiUrl + 'getProductList', id, { headers: this.headers });
+    getProductList(): Observable<any> {
+        return this.http.post(this.apiUrl + 'getProducts', { headers: this.headers });
     }
 }

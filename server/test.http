@@ -1,0 +1,59 @@
+@API_URL = localhost:3000/api
+
+@APP_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhbmRleW1wMTk5NkBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImFkbWluIiwiaWF0IjoxNjM4NDYxMDA3LCJleHAiOjE2MzkwNjEwMDd9.TMsrFKk5vZVSOjbnv8EYsAHc5p0G5Dr0qZ2bWMv3D5A
+
+### REGISTER API REQUEST
+POST http://{{API_URL}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+	"name": "Mohit",
+	"email": "mohitpmp3@gmail.com",
+	"password": "123456",
+	"city": "Haldwani",
+	"state": "Uttarakhand",
+	"zip": "263139",
+	"country": "India",
+	"mobile": "7983848236"
+	"address": "xyz"
+}
+
+### LOGIN API REQUEST
+
+POST http://{{API_URL}}/login HTTP/1.1
+content-type: application/json
+
+{
+	"email": "pandeymp1996@gmail.com",
+	"password": "admin"
+}
+
+### GET CATEGORIES API REQUEST
+
+POST http://{{API_URL}}/getCategories HTTP/1.1
+Authorization: Bearer {{APP_TOKEN}}
+
+### GET SUBCATEGORIES API REQUEST
+
+POST http://{{API_URL}}/getSubCategories HTTP/1.1
+Authorization: Bearer {{APP_TOKEN}}
+
+
+### GET ALL PRODUCTS API REQUEST
+
+POST http://{{API_URL}}/getProducts HTTP/1.1
+Authorization: Bearer {{APP_TOKEN}}
+
+### GET PRODUCT BY ID API REQUEST
+
+POST http://{{API_URL}}/getProductByID HTTP/1.1
+Authorization: Bearer {{APP_TOKEN}}
+
+{
+	id: "6187feb6acbffaf7d01a3e2a"
+}
+
+### GET PRODUCT DETAILS API REQUEST
+
+POST http://{{API_URL}}/getProductDetails HTTP/1.1
+Authorization: Bearer {{APP_TOKEN}}

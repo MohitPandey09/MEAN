@@ -9,7 +9,7 @@ const appRoutes: Routes = [
     // {
     //     path: 'admin',
     //     loadChildren: './admin-layout/admin-layout.module#AdminLayoutModule'
-    // }
+    // },
     {
         path: '',
         redirectTo: 'home',

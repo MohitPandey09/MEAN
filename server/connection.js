@@ -12,21 +12,3 @@ connection.once('open', function() {
 });
 
 module.exports = connection;
-
-// ---------------sql connection---------------
-
-// var mysql = require('mysql');
-
-// let connection = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'root',
-//     database: 'ecommerce'
-// });
-
-// connection.connect(function(err) {
-//     if (!!err)
-//         console.log('Error -> ' + err);
-//     else
-//         console.log("Connected!");
-// });

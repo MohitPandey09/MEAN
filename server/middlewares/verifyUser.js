@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const key = require('../secretkey');
 
 module.exports = (req, res, next) => {
     if ( !req.headers.authorization ) {
@@ -11,7 +10,7 @@ module.exports = (req, res, next) => {
         res.status(401).send("Unauthorized User Access");
     }
 
-    let payload = jwt.verify(token, key.secret);
+    let payload = jwt.verify(token, process.env.APP_SECRET_KEY);
     if ( payload === 'null') {
         res.status(401).send("Unauthorized User Access");
     }

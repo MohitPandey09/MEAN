@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
             email: ['', Validators.required],
             password: ['', Validators.required]
         });
+        console.log(environment.apiUrl)
     }
 
     get f() {
@@ -67,3 +68,27 @@ export class LoginComponent implements OnInit {
     }
 
 }
+
+// Number
+// Boolean
+// String
+// Void
+// Null It is used when an object does not have any value
+// Undefined Denotes value given to uninitialized variable
+
+// ----------------------- SENDING DATA TO CHILD FROM PARENT ----------------------- 
+// @Input () abc : string; // in child ts.file
+
+// <[abc] = "xyz"> // in child html.file
+
+// xyz = 'Mohit'; // in parent ts.file
+
+// ----------------------- SENDING DATA TO PARENT FROM CHILD ----------------------- 
+
+// @Output() abc = new EventEmitter<string>(); // in parent ts.file
+
+// 123(value) {
+//     this.abc.emit(value); // in parent html.file
+// }
+
+// <button (click)="123(value)">Add</button> // in child html.file
