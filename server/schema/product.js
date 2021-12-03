@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 var productSchema = mongoose.Schema({
     SKU: String,
@@ -8,19 +7,19 @@ var productSchema = mongoose.Schema({
     price: Number,
     image: String,
     categoryID: [{ 
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
     }],
     subcategoryID: [{ 
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'SubCategory'
     }],
     // supplierProductID: [{ 
-    //     type: Schema.Types.ObjectId,
+    //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'SubCategory'
     // }],
     // supplierID: [{ 
-    //     type: Schema.Types.ObjectId,
+    //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'Supplier'
     // }],
     quantityPerUnit: Number,
@@ -46,6 +45,4 @@ var productSchema = mongoose.Schema({
     updated_at: { type: Date, default: Date.now },
 });
 
-var productModel = mongoose.model('Product', productSchema);
-
-module.exports = productModel;
+module.exports = mongoose.model('Product', productSchema);

@@ -123,7 +123,7 @@ module.exports.login = async (req, res) => {
                         if (error) console.log('JWT Error: ', error);
                         else {
                             res.status(200).json({
-                                status: 1,
+                                msgCode: 1,
                                 message: 'Login successful',
                                 responseData: { token: token, userData: dbResponse }
                             });

@@ -6,6 +6,4 @@ var categorySchema = mongoose.Schema({
     updated_at: { type: Date, default: Date.now }
 });
 
-var categoryModel = mongoose.model('Categories', categorySchema);
-
-module.exports = categoryModel;
+module.exports = mongoose.model('Category', categorySchema);

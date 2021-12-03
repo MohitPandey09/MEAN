@@ -47,13 +47,24 @@ Authorization: Bearer {{APP_TOKEN}}
 ### GET PRODUCT BY ID API REQUEST
 
 POST http://{{API_URL}}/getProductByID HTTP/1.1
+Content-Type: application/json
 Authorization: Bearer {{APP_TOKEN}}
 
 {
-	id: "6187feb6acbffaf7d01a3e2a"
+	"id": "6187feb6acbffaf7d01a3e2a"
 }
 
 ### GET PRODUCT DETAILS API REQUEST
 
 POST http://{{API_URL}}/getProductDetails HTTP/1.1
 Authorization: Bearer {{APP_TOKEN}}
+
+### ADD ITEM TO CART
+POST http://{{API_URL}}/addItemToCart HTTP/1.1
+Authorization: Bearer {{APP_TOKEN}}
+
+{
+	"productID": "6187feb6acbffaf7d01a3e2a"
+}
+
+###

@@ -1,12 +1,12 @@
 const query = require('../query');
 const connection = require('../connection');
 var bcrypt = require('bcrypt');
-const userModel = require('../schema/users');
+const User = require('../schema/user');
 
 module.exports.saveUser = async (userData) => {
     const saltRounds = 10;
     let hashedPassword = await bcrypt.hash(userData.password, saltRounds);
-    const user = new userModel({
+    const user = new User({
         role: 4,
         name: userData.name,
         email: userData.email,
@@ -55,7 +55,7 @@ module.exports.saveUser = async (userData) => {
 }
 
 module.exports.login = async (user) => {
-    const userFound = await userModel.findOne({ email: user.email }).exec();
+    const userFound = await User.findOne({ email: user.email }).exec();
     if (userFound === null)
         return userFound;
     else{
@@ -67,7 +67,7 @@ module.exports.login = async (user) => {
         }
     }
     // return new Promise((resolve, reject) => {
-    //     userModel.findOne({ email: user.email }, (error, row) => {
+    //     User.findOne({ email: user.email }, (error, row) => {
     //         if (error) reject(error)
     //         else{
     //             bcrypt.compareSync(user.password, row.password)
