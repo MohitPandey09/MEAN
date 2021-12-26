@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CartComponent } from './modules/cart/cart.component';
+import { CheckoutComponent } from './modules/checkout/checkout.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/login/login.component';
 import { RegistrationComponent } from './modules/registration/registration.component';
@@ -29,9 +31,19 @@ const appRoutes: Routes = [
         component: HomeComponent
     },
     {
+        path: 'cart',
+        canActivate: [AuthGuard],
+        component: CartComponent
+    },
+    {
+        path: 'checkout',
+        canActivate: [AuthGuard],
+        component: CheckoutComponent
+    },
+    {
         path: 'product',
-        loadChildren: './modules/product/product.module#ProductModule'
-    }
+        loadChildren: () => import('./modules/product/product.module').then(m => m.ProductModule)
+    },
 ];
 
 @NgModule({

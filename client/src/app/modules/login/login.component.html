@@ -36,17 +36,17 @@
                     <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
                         <div class="group-input">
                             <label for="email">Email address *</label>
-                            <input type="text" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                <div *ngIf="f.email.errors.required">Email is required</div>
-                                <div *ngIf="f.email.errors.pattern">Email must be a valid email address</div>
+                            <input type="text" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                                <div *ngIf="f['email'].errors['pattern']">Email must be a valid email address</div>
                             </div>
                         </div>
                         <div class="group-input">
                             <label for="password">Password *</label>
-                            <input type="text" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                <div *ngIf="f.password.errors.required">Password is required</div>
+                            <input type="text" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                <div *ngIf="f['password'].errors['required']">Password is required</div>
                             </div>
                         </div>
                         <!-- <div class="group-input gi-check">

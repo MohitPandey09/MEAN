@@ -16,5 +16,6 @@ export class TokenService {
 
     destroyToken() {
         localStorage.removeItem('token');
+        localStorage.removeItem('userData');
     }
 }

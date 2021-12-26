@@ -11,7 +11,7 @@ import { MustMatch } from '../../shared/helpers/must-match.validator';
     styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-    public registerForm: FormGroup;
+    public registerForm!: FormGroup;
     public submitted = false;
     public errorMsg = null;
     public user: User = {
@@ -72,10 +72,10 @@ export class RegistrationComponent implements OnInit {
 
     handleRegistrationResponse(response: any) {
         console.log(response);
-        if (response.status === 1) {
+        if (response.statusCode === 1) {
             this.router.navigate(['login']);
         }
-        if (response.status === 0) {
+        if (response.statusCode === 0) {
             this.errorMsg = response.message;
         }
     }

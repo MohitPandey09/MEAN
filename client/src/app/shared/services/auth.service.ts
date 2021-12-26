@@ -8,7 +8,7 @@ export class AuthService {
     constructor() { }
 
     public getToken(): string {
-        return localStorage.getItem('token');
+        return localStorage.getItem('token')!;
     }
 
     public isLoggedIn(): boolean {

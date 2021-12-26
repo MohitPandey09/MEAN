@@ -11,10 +11,10 @@
             </div>
             <div class="ht-right">
                 <ng-template *ngIf="!isLoggedIn">
-                    <a [routerLink]="['/login']" routerLinkActive="router-link-active"  href="javascript:void(0);" class="login-panel">
+                    <a [routerLink]="['/login']" routerLinkActive="router-link-active" href="javascript:void(0);" class="login-panel">
                         <i class="fa fa-user"></i>Login
                     </a>
-                    <a [routerLink]="['/register']" routerLinkActive="router-link-active"  href="javascript:void(0);" class="login-panel">
+                    <a [routerLink]="['/register']" routerLinkActive="router-link-active" href="javascript:void(0);" class="login-panel">
                         <i class="fa fa-user"></i>Register
                     </a>
                 </ng-template>
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
-                        <a href="./index.html"><img src="{{ assetsUrl }}/img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="{{ ASSETS_URL }}/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
@@ -94,7 +94,9 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td class="si-pic"><img src="{{ assetsUrl }}/img/select-product-1.jpg" alt=""></td>
+                                                <td class="si-pic">
+                                                    <img src="{{ ASSETS_URL }}/img/select-product-1.jpg" alt="">
+                                                </td>
                                                 <td class="si-text">
                                                     <div class="product-selected">
                                                         <p>$60.00 x 1</p>
@@ -106,7 +108,9 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="si-pic"><img src="{{ assetsUrl }}/img/select-product-2.jpg" alt=""></td>
+                                                <td class="si-pic">
+                                                    <img src="{{ ASSETS_URL }}/img/select-product-2.jpg" alt="">
+                                                </td>
                                                 <td class="si-text">
                                                     <div class="product-selected">
                                                         <p>$60.00 x 1</p>
@@ -143,10 +147,10 @@
                     <i class="ti-menu"></i>
                     <span>All departments</span>
                     <ul class="depart-hover">
-                            <li *ngFor="let category of categoryData;" class="active">
-                                <a href="javascript:void(0);" [routerLink]="['/product/category/', category._id]"  
-                                routerLinkActive="router-link-active">{{ category.cat_name }}</a>
-                            </li>
+                        <li *ngFor="let category of categoryData;" class="active">
+                            <a href="javascript:void(0);" [routerLink]="['/product/category/', category._id]"  
+                            routerLinkActive="router-link-active">{{ category.categoryName }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -158,7 +162,7 @@
                         <ul class="dropdown">
                             <li *ngFor="let category of categoryData;">
                                 <a href="javascript:void(0);" [routerLink]="['/product/category/', category._id]"  
-                                routerLinkActive="router-link-active">{{ category.cat_name }}</a>
+                                routerLinkActive="router-link-active">{{ category.categoryName }}</a>
                             </li>
                         </ul>
                     </li>

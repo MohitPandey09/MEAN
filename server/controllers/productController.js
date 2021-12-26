@@ -7,20 +7,21 @@ module.exports.getCategoryList = async (req, res) => {
     try {
         if (categories !== null) {
             res.status(200).json({
-                status: 1,
+                statusCode: 1,
                 message: 'Category List',
                 responseData: categories
             });
         } else {
             res.json({
-                status: 0,
+                statusCode: 0,
                 msgCode: 452,
                 message: 'Not found',
-                responseData: {}
+                responseData: null
             });
         }
     } catch (error) {
         console.log('Server Error: ', error);
+        next(new Error('Invalid request'));
     }
 }
 
@@ -30,20 +31,21 @@ module.exports.getSubCategoryList = async (req, res) => {
         // return await Subcategory.find().populate('subcategory');
         if (subcategories !== null) {
             res.status(200).json({
-                status: 1,
+                statusCode: 1,
                 message: 'Sub-Category List',
                 responseData: subcategories
             });
         } else {
             res.json({
-                status: 0,
+                statusCode: 0,
                 msgCode: 452,
                 message: 'Not found',
-                responseData: {}
+                responseData: null
             });
         }
     } catch (error) {
         console.log('Server Error: ', error);
+        next(new Error('Invalid request'));
     }
 }
 
@@ -52,20 +54,21 @@ module.exports.getProductList = async (req, res) => {
     try {
         if (products !== null) {
             res.status(200).json({
-                status: 1,
+                statusCode: 1,
                 message: 'Product List',
                 responseData: products
             });
         } else {
             res.json({
-                status: 0,
+                statusCode: 0,
                 msgCode: 453,
                 message: 'Products not found',
-                responseData: {}
+                responseData: null
             });
         }
     } catch (error) {
         console.log('Server Error: ', error);
+        next(new Error('Invalid request'));
     }
 }
 
@@ -74,19 +77,20 @@ module.exports.getProductByID = async (req, res) => {
     try {
         if (product !== null) {
             res.json({
-                status: 1,
+                statusCode: 1,
                 message: 'Product',
                 responseData: product
             });
         } else {
             res.json({
-                status: 0,
+                statusCode: 0,
                 msgCode: 454,
                 message: 'Product not found',
-                responseData: {}
+                responseData: null
             });
         }
     } catch (error) {
         console.log('Server Error: ', error);
+        next(new Error('Invalid request'));
     }
 }

@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment';
     styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-    public assetsUrl = environment.assetsUrl;
+    public ASSETS_URL = environment.ASSETS_URL;
 
     constructor() { }
 

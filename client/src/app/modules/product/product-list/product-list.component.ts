@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-    public assetsUrl = environment.assetsUrl;
+    public ASSETS_URL = environment.ASSETS_URL;
     public productId: any = {
         id: null
     };

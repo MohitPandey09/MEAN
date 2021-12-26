@@ -4,8 +4,10 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:3000/api/',
-    assetsUrl: './assets'
+    API_URL: 'http://localhost:3000/api/',
+    ASSETS_URL: './assets',
+    STRIPE_PUBLIC_KEY: 'pk_test_51K6eY1SHrrqQXcLUV34MnRSm3Tle5JPebsqYxENVm5k5rfJoN9U6HVOMdvmCP1KM1nLPqoHyXkwfpGMgx3Bje4Lg00YPp5xfq0',
+    STRIPE_SECRET_KEY: 'sk_test_51K6eY1SHrrqQXcLUNqSOUVDj3qjt5tq2bELZA6uo2CEPPxSwS1dKpc7KM181SvaRTmO6BY4OlYmhyrp0X5hwYkam00TY8FMHXx'
 };
 
 /*

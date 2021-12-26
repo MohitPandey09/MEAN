@@ -11,8 +11,9 @@ import { TokenService } from 'src/app/shared/services/token.service';
     styleUrls: ['./header.component.css']
 })
 
+
 export class HeaderComponent implements OnInit {
-    public assetsUrl = environment.assetsUrl;
+    public ASSETS_URL = environment.ASSETS_URL;
     public isLoggedIn: boolean;
     public userData: any;
     public categoryData: any;
@@ -26,19 +27,16 @@ export class HeaderComponent implements OnInit {
         this.isLoggedIn = this.authService.isLoggedIn();
     }
 
-    // 9759841200
-
     ngOnInit() {
-        this.userData = JSON.parse(localStorage.getItem('userData'));
+        this.userData = JSON.parse(localStorage.getItem('userData')!);
         this.getCategories();
     }
 
     getCategories() {
-        console.log('cat called');
         this.api.getCategoryList().subscribe(
             (response) => {
                 this.handleCategoryList(response);
-                console.log('what happen', response);
+                console.log('getCategpriesList', response);
             },
             (error) => {
                 console.log(error);
@@ -47,7 +45,7 @@ export class HeaderComponent implements OnInit {
     }
 
     handleCategoryList(response: any) {
-        if(response.status == 1) {
+        if(response.statusCode == 1) {
             this.categoryData = response.responseData;
         }
     }

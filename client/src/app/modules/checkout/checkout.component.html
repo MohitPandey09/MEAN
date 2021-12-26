@@ -1,0 +1,25 @@
+<div class="container">
+    <form [formGroup]="stripeTest" (ngSubmit)="createToken()" novalidate>
+        <div class="row">
+            <h4>Account</h4>
+            <div class="input-group input-group-icon">
+				<input type="text" formControlName="name" placeholder="Jane Doe" />
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+				<input type="email" formControlName="email" placeholder="Email Address" />
+                <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+        </div>
+		<div class="row">
+			<h4>Payment Details</h4>
+		</div>
+		<ngx-stripe-card
+			[options]="cardOptions"
+			[elementsOptions]="elementsOptions">
+		</ngx-stripe-card>
+        <div class="row">
+			<button class="btn btn-success" type="submit">Checkout</button>
+        </div>
+    </form>
+</div>

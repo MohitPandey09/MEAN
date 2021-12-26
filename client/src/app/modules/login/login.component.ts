@@ -11,10 +11,10 @@ import { TokenService } from 'src/app/shared/services/token.service';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    public loginForm: FormGroup;
-    public assetUrl = environment.assetsUrl;
+    public loginForm!: FormGroup;
+    public assetUrl = environment.ASSETS_URL;
     public submitted = false;
-    public errorMsg: string = null;
+    public errorMsg!: any;
 
     constructor(
         private fb: FormBuilder,
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
             email: ['', Validators.required],
             password: ['', Validators.required]
         });
-        console.log(environment.apiUrl)
+        console.log(environment.API_URL)
     }
 
     get f() {
@@ -53,12 +53,12 @@ export class LoginComponent implements OnInit {
 
     handleLoginResponse(response: any) {
         console.log(response);
-        if (response.status === 1) {
+        if (response.statusCode === 1) {
             this.token.setToken(response.responseData.token);
             localStorage.setItem('userData', JSON.stringify(response.responseData.userData));
             this.router.navigate(['home']);
         }
-        if (response.status === 0) {
+        if (response.statusCode === 0) {
             this.errorMsg = response.message;
         }
     }

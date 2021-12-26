@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class ApiService {
-    public apiUrl = environment.apiUrl;
+    public API_URL = environment.API_URL;
     public headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     constructor(
@@ -14,23 +14,31 @@ export class ApiService {
     ) { }
 
     loginApi(data: any): Observable<any> {
-        return this.http.post(this.apiUrl + 'login', data, { headers: this.headers });
+        return this.http.post(this.API_URL + 'login', data, { headers: this.headers });
     }
 
     registerApi(data: any): Observable<any> {
-        return this.http.post(this.apiUrl + 'register', data, { headers: this.headers });
+        return this.http.post(this.API_URL + 'register', data, { headers: this.headers });
     }
 
     getCategoryList(): Observable<any> {
-        return this.http.post(this.apiUrl + 'getCategories', { headers: this.headers });
+        return this.http.get(this.API_URL + 'getCategories', { headers: this.headers });
     }
 
     getSubCategoryList(id: any): Observable<any> {
-        console.log('called', id);
-        return this.http.post(this.apiUrl + 'getSubCategories', id, { headers: this.headers });
+        return this.http.post(this.API_URL + 'getSubCategories', id, { headers: this.headers });
     }
 
     getProductList(): Observable<any> {
-        return this.http.post(this.apiUrl + 'getProducts', { headers: this.headers });
+        return this.http.post(this.API_URL + 'getProducts', { headers: this.headers });
+    }
+
+    getPaymentIntentKey(id: any): Observable<any> {
+        console.log('works', id);        
+        return this.http.post(this.API_URL + 'createPaymentIntent', id, { headers: this.headers })
+    }
+
+    createCheckout(data: any): Observable<any> {
+        return this.http.post(this.API_URL + 'createCheckout', data, { headers: this.headers });
     }
 }
