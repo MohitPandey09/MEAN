@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<!-- Head -->
+<%- include('../partials/head.ejs'); %>
+<!-- End Head -->
+
+<body>
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <div id="main-wrapper">
+        <!-- Header -->
+        <%- include('../partials/header.ejs'); %>
+        <!-- End Header -->
+        <!-- Sidebar -->
+        <%- include('../partials/sidebar.ejs'); %>
+        <!-- End Sidebar -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title"><%= title %></h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><%= title %></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <form action="/admin/product/add" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                                <div class="card-body">
+                                    <!-- <h4 class="card-title">Personal Info</h4> -->
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-3 text-right control-label col-form-label">File Upload</label>
+                                        <div class="col-md-9">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="image" id="image" accept="image/jpeg, image/png" required>
+                                                <label class="custom-file-label" for="image">Choose file...</label>
+                                                <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-3 text-right control-label col-form-label">Description</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="price" class="col-sm-3 text-right control-label col-form-label">Price</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Category</label>
+                                        <div class="col-md-9">
+                                            <select name="category" id="category" class="form-control custom-select" style="width: 100%; height:36px;">
+                                                <option selected disabled>Choose...</option>
+                                                <% categories.forEach(function (category) { %>
+                                                    <option value="<%= category._id %>"><%= category.name %></option>
+                                                <% }) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Sub Category</label>
+                                        <div class="col-md-9">
+                                            <select name="subcategory" id="subcategory" class="form-control custom-select" style="width: 100%; height:36px;">
+                                                <option selected disabled>Choose...</option>
+                                            </select>
+                                        </div>
+                                    </div>                                    
+                                    
+                                    <div class="form-group row">
+                                        <label for="discount" class="col-sm-3 text-right control-label col-form-label">Discount (%)</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="discount" name="discount" placeholder="Discount">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="weight" class="col-sm-3 text-right control-label col-form-label">Weight</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="weight" name="weight" placeholder="Weight">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="instock" class="col-sm-3 text-right control-label col-form-label">In stock</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="instock" name="instock" placeholder="In stock">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="available" class="col-sm-3 text-right control-label col-form-label">Available</label>
+                                        <!-- true/false or remove with logic for in stock quantity-->
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="available" name="available" placeholder="Available">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-top">
+                                    <div class="card-body save-btn-row">
+                                        <input type="submit" value="Save" class="btn btn-primary">
+                                        <a href="/admin/products" class="btn btn-secondary">Back</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Container fluid  -->
+            <!-- Footer -->
+            <%- include('../partials/footer.ejs'); %>
+            <!-- End Footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script src="/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="/js/custom.min.js"></script>
+    <!-- This Page JS -->
+    <script src="/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <script src="/js/pages/mask/mask.init.js"></script>
+    <script src="/libs/select2/dist/js/select2.min.js"></script>
+    <script src="/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+    <script src="/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+    <script src="/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+    <script src="/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script src="/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="/libs/quill/dist/quill.min.js"></script>
+    <script>
+        //***********************************//
+        // For select 2
+        //***********************************//
+        $(".select2").select2();
+
+        /*colorpicker*/
+        $('.demo').each(function() {
+        //
+        // Dear reader, it's actually very easy to initialize MiniColors. For example:
+        //
+        //  $(selector).minicolors();
+        //
+        // The way I've done it below is just for the demo, so don't get confused
+        // by it. Also, data- attributes aren't supported at this time...they're
+        // only used for this demo.
+        //
+        $(this).minicolors({
+                control: $(this).attr('data-control') || 'hue',
+                position: $(this).attr('data-position') || 'bottom left',
+
+                change: function(value, opacity) {
+                    if (!value) return;
+                    if (opacity) value += ', ' + opacity;
+                    if (typeof console === 'object') {
+                        console.log(value);
+                    }
+                },
+                theme: 'bootstrap'
+            });
+        });
+        /*datwpicker*/
+        jQuery('.mydatepicker').datepicker();
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        });
+        
+
+
+        // fetch subcategory details for selected category
+        var categoryDropdown = document.getElementById('category');
+        categoryDropdown.onchange = () => {
+            var subcategories = '';
+            var subcategoryDropdown = document.getElementById("subcategory");
+            while (subcategoryDropdown.options.length > 0) {
+                subcategoryDropdown.remove(0);
+            }
+            var selectedCategory = categoryDropdown.value;
+            fetch(`/admin/product/${selectedCategory}`, { method: 'GET' }).then( response => {
+                if (response.ok) {
+                    return response.json();
+                } throw new Error('Request failed.');
+            }).then((myJson) => {
+                subcategories = myJson.subcategories;
+                // add option to subcategory dropdown dynamically
+                if (subcategories === null) {
+                    subcategoryDropdown.add(new Option( 'Not found', null));
+                } else {
+                    subcategories.forEach( ({name,  _id }) => {    // create dropdown items{
+                        subcategoryDropdown.add( new Option(name, _id))
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

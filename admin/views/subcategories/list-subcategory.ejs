@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head -->
+<%- include('../partials/head.ejs'); %>
+<!-- End Head -->
+
+<body>
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <div id="main-wrapper">
+		<!-- Header -->
+		<%- include('../partials/header.ejs'); %>
+		<!-- End Header -->
+
+		<!-- Sidebar -->
+		<%- include('../partials/sidebar.ejs'); %>
+		<!-- End Sidebar -->
+		
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <!-- Bread crumb and right sidebar toggle -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title"><%= title %></h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="/admin/dashboard">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><%= title %></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+                <div class="row new-btn-row">
+                    <a href="/admin/subcategory/add" class="btn btn-primary">
+                        <i class="fas fa-plus" aria-hidden="true"></i> Add New
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"></h5>
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Image</th>
+                                                <th>Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+											<% subcategories.forEach(function (subcategory) { %>
+												<tr>
+													<td><img src="/images/<%= subcategory.image %>" class="avatar-img"></td>
+													<td><%= subcategory.name %></td>
+													<td>
+                                                        <a href="<%= `/admin/subcategory/${subcategory._id}/edit` %>" class="btn btn-success">
+                                                            <i class="fas fa-edit" aria-hidden="true"></i>
+                                                        </a>
+                                                        <button class="btn btn-danger" data-toggle="modal" data-target="#<%= subcategory._id %>">
+                                                            <i class="fas fa-trash" aria-hidden="true"></i>
+                                                        </button>
+                                                    </td>
+                                                    <!--  Delete Modal -->
+                                                    <div class="modal fade" id="<%= subcategory._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">You won't be able to revert this!</div>
+                                                                <div class="modal-footer">
+                                                                    <a href="<%= `/admin/subcategory/${subcategory._id}/delete` %>" class="btn btn-primary">Yes, delete it!</a>
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+												</tr>
+											<% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End PAge Content -->
+            </div>
+            <!-- End Container fluid  -->
+
+			<!-- Footer -->
+			<%- include('../partials/footer.ejs'); %>
+			<!-- End Footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script src="/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/extra-libs/sparkline/sparkline.js"></script>
+    <!--Wave Effects -->
+    <script src="/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="/js/custom.min.js"></script>
+    <!-- this page js -->
+    <script src="/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="/extra-libs/DataTables/datatables.min.js"></script>
+    <script>
+        /****************************************
+         *       Basic Table                   *
+         ****************************************/
+        $('#zero_config').DataTable();
+    </script>
+
+</body>
+
+</html>

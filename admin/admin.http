@@ -1,0 +1,85 @@
+@API_URL = localhost:3001/admin
+
+### LOGIN API
+
+POST http://{{API_URL}}/login HTTP/1.1
+Content-Type: application/json
+
+{
+	"email": "admin@admin.com",
+	"password": "admin"
+}
+###
+
+GET http://{{API_URL}}/users
+Content-Type: application/json
+
+### ADD CATEGORY API
+POST http://{{API_URL}}/addCategory HTTP/1.1
+Content-Type: application/json
+
+{
+	"name": "Electronics"
+}
+
+### ADD SUBCATEGORY API
+POST http://{{API_URL}}/addSubcategory HTTP/1.1
+Content-Type: application/json
+
+{
+	"categoryID": "61d1b3cccfa792063ca5d867",
+	"name": "Laptops",
+	"image": "path.jpeg"
+}
+
+# 61d1b36dcfa792063ca5d866 FASHION
+# 61d1b3cccfa792063ca5d867 ELECTRONICS
+
+### ADD PRODUCT API
+POST http://{{API_URL}}/addProduct HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Hp Pavilion X",
+    "description": "Gaming Laptop",
+    "price": 49999,
+    "image": "path.jpeg",
+    "category": "61d1b3cccfa792063ca5d867",
+    "subcategory": "61d1b983cfa792063ca5d86a",
+    "availableSize": [  ],
+    "availableColors": [ "Silver", "Black" ],
+    "discount": 10,
+    "weight": "0.05 kg",
+    "inStock": 100,
+    "productAvailable": 1,
+    "discountAvailable": 1
+}
+
+# 61d1b8b4cfa792063ca5d868 TOPWEARS
+# 61d1b8e9cfa792063ca5d869 BOTTOMWEARS
+# 61d1b983cfa792063ca5d86a LAPTOPS
+### GET CATEGORIES API
+
+GET http://{{API_URL}}/getCategories HTTP/1.1
+Content-Type: application/json
+
+### GET SUBCATEGORIES API
+
+GET http://{{API_URL}}/getSubcategories HTTP/1.1
+Content-Type: application/json
+
+### GET ALL PRODUCTS API
+
+GET http://{{API_URL}}/getProducts HTTP/1.1
+Content-Type: application/json
+
+# 61d1ba3acfa792063ca5d86b tshirt
+# 61d1baeacfa792063ca5d86c leggings
+# 61d1bb34cfa792063ca5d86d crop top
+# 61d1bc25cfa792063ca5d86e Hp Pavilion X
+### GET PRODUCT DETAILS API
+
+GET http://{{API_URL}}/getProductDetails/6187feb6acbffaf7d01a3e2a HTTP/1.1
+Content-Type: application/json
+
+###
