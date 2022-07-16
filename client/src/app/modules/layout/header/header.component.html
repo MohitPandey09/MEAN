@@ -3,11 +3,11 @@
         <div class="container">
             <div class="ht-left">
                 <div class="mail-service">
-                    <i class=" fa fa-envelope"></i>hello.colorlib@gmail.com
+                    <i class=" fa fa-envelope"></i>pandeymp1996@gmail.com
                 </div>
-                <div class="phone-service">
+                <!-- <div class="phone-service">
                     <i class=" fa fa-phone"></i>+65 11.188.888
-                </div>
+                </div> -->
             </div>
             <div class="ht-right">
                 <ng-template *ngIf="!isLoggedIn">
@@ -21,35 +21,23 @@
 
                 <!-- <div class="lan-selector profile-dropdown">
                     <ul class="dropdown">
-                        <li><a href="#">Hello {{ userData.fname }}</a>
+                        <li>
+                            <a href="#">Hello {{ userData.name.split(' ')[0] }}</a>
                             <ul>
-                                <li><a href="#">Profile</a></li>
+                                <li>
+                                    <a [routerLink]="['/profile']" href="javascript:void(0);">
+                                        <i class="fa fa-user" aria-hidden="true"></i> Profile
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
                 </div> -->
-                <div class="lan-selector">
-                    <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                        <option value='yt' data-title="English"><i class="fa fa-user-circle" aria-hidden="true"></i>
-                            Hello {{ userData.fname }}</option>
-                        <option value='yu' data-image="./assets/img/flag-2.jpg" data-imagecss="flag yu"
-                            data-title="German">Profile</option>
-                    </select>
-                </div>
                 
-                <a (click)="logout()" routerLinkActive="router-link-active"  href="javascript:void(0);" class="login-panel">
+                <a (click)="logout()" routerLinkActive="router-link-active" href="javascript:void(0);" class="login-panel">
                     <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
                 </a>
-                    
-                <!-- closed for now -->
-                <!-- <div class="lan-selector">
-                    <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                        <option value='yt' data-image="./assets/img/flag-1.jpg" data-imagecss="flag yt"
-                            data-title="English">English</option>
-                        <option value='yu' data-image="./assets/img/flag-2.jpg" data-imagecss="flag yu"
-                            data-title="German">German </option>
-                    </select>
-                </div> -->
+                
                 <div class="top-social">
                     <a href="javascript:void(0);"><i class="ti-facebook"></i></a>
                     <a href="javascript:void(0);"><i class="ti-twitter-alt"></i></a>
@@ -64,7 +52,9 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
-                        <a href="./index.html"><img src="{{ ASSETS_URL }}/img/logo.png" alt=""></a>
+                        <a [routerLink]="['/home']" href="javascript:void(0);">
+                            <img src="{{ ASSETS_URL }}/img/logo.png" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
@@ -79,17 +69,15 @@
                 <div class="col-lg-3 text-right col-md-3">
                     <ul class="nav-right">
                         <li class="heart-icon">
-                            <a href="javascript:void(0);">
+                            <a [routerLink]="['/favourite']" routerLinkActive="router-link-active" href="javascript:void(0);">
                                 <i class="icon_heart_alt"></i>
-                                <span>1</span>
                             </a>
                         </li>
                         <li class="cart-icon">
-                            <a href="javascript:void(0);">
-                                <i class="icon_bag_alt"></i>
-                                <span>3</span>
+                            <a [routerLink]="['/cart']" routerLinkActive="router-link-active" href="javascript:void(0);">
+                                <i class="fa fa-shopping-cart"></i>
                             </a>
-                            <div class="cart-hover">
+                            <!-- <div class="cart-hover">
                                 <div class="select-items">
                                     <table>
                                         <tbody>
@@ -132,9 +120,8 @@
                                     <a href="javascript:void(0);" class="primary-btn view-card">VIEW CARD</a>
                                     <a href="javascript:void(0);" class="primary-btn checkout-btn">CHECK OUT</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </li>
-                        <li class="cart-price">$150.00</li>
                     </ul>
                 </div>
             </div>
@@ -149,31 +136,29 @@
                     <ul class="depart-hover">
                         <li *ngFor="let category of categoryData;" class="active">
                             <a href="javascript:void(0);" [routerLink]="['/product/category/', category._id]"  
-                            routerLinkActive="router-link-active">{{ category.categoryName }}</a>
+                            routerLinkActive="router-link-active">{{ category.name }}</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <nav class="nav-menu mobile-menu">
                 <ul>
-                    <li class="active"><a href="javascript:void(0);">Home</a></li>
-                    <li><a href="javascript:void(0);">Shop</a></li>
-                    <li><a href="javascript:void(0);">Collection</a>
-                        <ul class="dropdown">
-                            <li *ngFor="let category of categoryData;">
-                                <a href="javascript:void(0);" [routerLink]="['/product/category/', category._id]"  
-                                routerLinkActive="router-link-active">{{ category.categoryName }}</a>
-                            </li>
-                        </ul>
+                    <li class="active">
+                        <a [routerLink]="['/home']" routerLinkActive="router-link-active" href="javascript:void(0);">Home</a>
                     </li>
-                    <li><a href="javascript:void(0);">Blog</a></li>
-                    <li><a href="javascript:void(0);">Contact</a></li>
-                    <li><a href="javascript:void(0);">Pages</a>
+                    <li>
+                        <a href="javascript:void(0);">Profile</a>
                         <ul class="dropdown">
-                            <li><a href="javascript:void(0);">Blog Details</a></li>
-                            <li><a href="javascript:void(0);">Shopping Cart</a></li>
-                            <li><a href="javascript:void(0);">Checkout</a></li>
-                            <li><a href="javascript:void(0);">Faq</a></li>
+                            <li>
+                                <a [routerLink]="['/']" routerLinkActive="router-link-active" href="javascript:void(0);">
+                                    <i class="fa fa-user" aria-hidden="true"></i> Edit Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/favourite']" routerLinkActive="router-link-active" href="javascript:void(0);">
+                                    <i class="fa fa-heart" aria-hidden="true"></i> Favourite
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

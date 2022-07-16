@@ -1,7 +1,7 @@
 <!-- Page Preloder -->
-<!-- <div id="preloder">
+<div *ngIf="!isLoaded" id="preloder">
     <div class="loader"></div>
-</div> -->
+</div>
 
 <!-- Header Section Begin -->
 <app-header></app-header>
@@ -160,31 +160,36 @@
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-5 text-right">
-                            <p>Show 01- 09 Of 36 Product</p>
+                            <p>Show 01- 09 Of {{ subCategoryData.length }} Sub Category</p>
                         </div>
                     </div>
                 </div>
                 <div class="product-list">
                     <div class="row">
-                        <div *ngFor="let category of subCategoryData" class="col-lg-4 col-sm-6">
+                        <div *ngFor="let subcategory of subCategoryData" class="col-lg-4 col-sm-6">
                             <div class="product-item">
                                 <div class="pi-pic">
                                     <img src="{{ ASSETS_URL }}/img/products/product-1.jpg" alt="">
                                     <!-- put <div class="sale pp-sale">Sale</div> after class pi-pic->img tag for sale label -->
-                                    <div class="sale pp-sale">Sale</div>
                                     <div class="icon">
                                         <i class="icon_heart_alt"></i>
                                     </div>
                                     <ul>
-                                        <li class="w-icon active"><a href="javascript:void(0);"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="javascript:void(0);" [routerLink]="['/product/list/' + category.id]" routerLinkActive="router-link-active" >+ View</a></li>
-                                        <li class="w-icon"><a href="javascript:void(0);"><i class="fa fa-random"></i></a></li>
+                                        <!-- <li class="w-icon active">
+                                            <a href="javascript:void(0);"><i class="icon_bag_alt"></i></a>
+                                        </li> -->
+                                        <li class="quick-view" style="width: 50%;">
+                                            <a [routerLink]="['/product/list/' + subcategory._id]" routerLinkActive="router-link-active" href="javascript:void(0);" >+ View</a>
+                                        </li>
+                                        <!-- <li class="w-icon">
+                                            <a href="javascript:void(0);"><i class="fa fa-random"></i></a>
+                                        </li> -->
                                     </ul>
                                 </div>
                                 <div class="pi-text">
-                                    <div class="catagory-name">Towel</div>
-                                    <a href="javascript:void(0);">
-                                        <h5>{{ category.subcategory_name }}</h5>
+                                    <div class="catagory-name">{{ subcategory.category.name }}</div>
+                                    <a [routerLink]="['/product/list/' + subcategory._id]" routerLinkActive="router-link-active" href="javascript:void(0);">
+                                        <h5>{{ subcategory.name }}</h5>
                                     </a>
                                 </div>
                             </div>

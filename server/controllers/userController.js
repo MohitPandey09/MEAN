@@ -1,11 +1,10 @@
 const User = require('../schema/user');
-const userModel = require('../services/userModel');
 const Validator = require('../shared/helpers/validate');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 // COMMENT: USER REGISTER HANDLER
-module.exports.register = (req, res) => {
+module.exports.register = async (req, res, next) => {
 	var rules = {
 		name: 'required',
 		email: 'required|email',
@@ -18,19 +17,20 @@ module.exports.register = (req, res) => {
         address: 'required'
     };
     
-    Validator(req.body, rules, {}, (err, status) => {
-        if (!status) {
-            return res.json({
-                statusCode: 0,
-                msgCode: 412,
-                message: 'Validation failed',
-                responseData: err
-            });
-        }
+    const validate = Validator(req.body, rules, {});
+    if (!validate) {
+        return res.json({
+            statusCode: 0,
+            msgCode: 412,
+            message: 'Validation failed',
+            responseData: validate
+        });
+    }
+    try {
         const saltRounds = 10;
-        let hashedPassword = bcrypt.hash(req.body.password, saltRounds);
+        let hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
         const user = new User({
-            role: 4,
+            role: 1,
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword,
@@ -42,31 +42,27 @@ module.exports.register = (req, res) => {
             mobile: req.body.mobile,
             email_verified: 0
         });
-        let savedUser = user.save();
-        try{
-            if (savedUser) {
-                res.status(200).json({
-                    statusCode: 1,
-                    message: 'Registered successfully',
-                    responseData: null
-                });
-            } else {
-                res.json({
-                    statusCode: 0,
-                    msgCode: 420,
-                    message: savedUser,
-                    responseData: null
-                });
-            }
-        } catch(err) {
-            console.log('Server error: ', err);
-			next(new Error('Invalid request'));
-        }
-    });
+        let savedUser = await user.save();
+        if (savedUser) {
+            res.status(200).json({
+                statusCode: 1,
+                message: 'Registered successfully'
+            });
+        } else {
+            res.json({
+                statusCode: 0,
+                msgCode: 420,
+                message: savedUser
+            });
+        }     
+    } catch (error) {
+        console.log('Server error: ', error);
+        next(new Error('Server error, Something was wrong!'));
+    }
 };
 
 // COMMENT: USER LOGIN HANDLER
-module.exports.login = async (req, res) => {
+module.exports.login = async (req, res, next) => {
     var user = {
         email: req.body.email,
         password: req.body.password
@@ -76,31 +72,33 @@ module.exports.login = async (req, res) => {
 		password: 'required' 
     };
 
-    Validator(user, rules, {}, (err, status) => {
-        if (!status) {
-            return res.json({
+    let validate = Validator(user, rules, {});
+    if (!validate) {
+        return res.json({
+            statusCode: 0,
+            msgCode: 412,
+            message: 'Validation failed',
+            responseData: err
+        });
+    }
+    try {
+        const userFound = await User.findOne({ email: user.email, role: 2 }).select("+password").exec();
+        if (userFound === null) {
+            res.json({
                 statusCode: 0,
                 msgCode: 412,
-                message: 'Validation failed',
-                responseData: err
+                message: 'Invalid Email'
             });
-        }
-        userModel.login(user).then((dbResponse) => {
-            if (!dbResponse) {
-                res.json({
-                    statusCode: 0,
-                    msgCode: 420,
-                    message: 'Invalid Credentials',
-                    responseData: null
-                });
-            } else {
+        } else{
+            const isMatch = await bcrypt.compare(user.password, userFound.password);
+            if (isMatch) {
                 jwt.sign(user, process.env.APP_SECRET_KEY, { expiresIn: 600000 }, (error, token) => {
                     if (error) console.log('JWT Error: ', error);
                     else {
                         let userData = {
-                            id: dbResponse._id,
-                            name: dbResponse.name,
-                            email: dbResponse.email
+                            id: userFound._id,
+                            name: userFound.name,
+                            email: userFound.email
                         }
                         res.status(200).json({
                             statusCode: 1,
@@ -109,10 +107,16 @@ module.exports.login = async (req, res) => {
                         });
                     }
                 });
+            } else {
+                return res.json({
+                    statusCode: 0,
+                    msgCode: 412,
+                    message: 'Invalid Password'
+                });
             }
-        }).catch((error) => {
-            console.log('Server Error: ', error);
-			next(new Error('Invalid request'));
-        });
-    });
+        }
+    } catch (error) {
+        console.log('Server Error: ', error);
+        next(new Error('Server Error, Something was wrong!'));
+    }
 }

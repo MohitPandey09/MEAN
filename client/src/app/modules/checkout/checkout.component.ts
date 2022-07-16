@@ -13,6 +13,7 @@ import { ApiService } from "src/app/shared/services/api.service";
     styleUrls: ["./checkout.component.css"],
 })
 export class CheckoutComponent implements OnInit {
+    public isLoaded: boolean = false;
     client_secret: any;
     userData: any = { };
     @ViewChild(StripeCardComponent) card!: StripeCardComponent;
@@ -53,14 +54,18 @@ export class CheckoutComponent implements OnInit {
 
     ngOnInit(): void {
         // call payment intent to fetch client secret
-        this.userData = JSON.parse(localStorage.getItem('userData')!);
-        console.log(this.userData._id)
-        this.apiService.getPaymentIntentKey(this.userData).subscribe(
+        this.getPaymentIntent();
+    }
+
+    getPaymentIntent() {
+        this.apiService.getPaymentIntentKey().subscribe(
             (response) => {
+                this.isLoaded = true;
                 console.log(response.clientKey);
                 this.client_secret = response.clientKey;
             },
             (error) => {
+                this.isLoaded = true;
                 console.log(error);
             }
         )
@@ -68,10 +73,11 @@ export class CheckoutComponent implements OnInit {
         this.stripeTest = this.fb.group({
             name: ["", [Validators.required]],
             email: [""]
-        });
+        });    
     }
 
     createToken(): void {
+        this.isLoaded = false;
         this.stripeService.confirmCardPayment(this.client_secret, {
             payment_method: {
                 card: this.card.element,
@@ -82,11 +88,13 @@ export class CheckoutComponent implements OnInit {
         }).subscribe((result) => {
             if (result.error) {
                 // Show error to your customer (e.g., insufficient funds)
+                this.isLoaded = true;
                 console.log(result.error.message);
             } else {
                 // The payment has been processed!
                 console.log(result.paymentIntent);
                 if (result.paymentIntent!.status === 'succeeded') {
+                    this.isLoaded = true;
                     console.log('success');
                     // Show a success message to your customer
                 }

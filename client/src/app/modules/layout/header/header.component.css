@@ -1,7 +1,7 @@
 .profile-dropdown a {
   text-decoration: none;
   color: black;
-  font-size: 20px;
+  font-size: 16px;
   display: inline-block;
 }
 .profile-dropdown ul {
@@ -12,9 +12,6 @@
 .profile-dropdown ul li {
   display: inline-block;
 }
-.profile-dropdown ul li:hover {
-  background: rgb(240, 185, 7);
-}
 .profile-dropdown ul li:hover ul {
   display: block;
 }
@@ -24,12 +21,25 @@
   display: none;
 }
 .profile-dropdown ul li ul li {
-  background: #555;
+  background: #252525;
   display: block;
 }
 .profile-dropdown ul li ul li a {
   display: block !important;
 }
 .profile-dropdown ul li ul li:hover {
-  background: #666;
+  background: #252525;
 }
+.profile-dropdown ul li ul li a:hover {
+  color: #e7ab3c;
+}
+.profile-dropdown ul li ul li a {
+  color: #fff;
+}
+.nav-right li a:hover {
+  color: #e7ab3c;
+}
+
+
+/* background: #252525; */
+/* columns: #e7ab3c */

@@ -1,16 +1,16 @@
 var mongoose = require('mongoose');
 
 let itemSchema = mongoose.Schema({
-    productID: {
+    product: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
+        ref: "Product"
     },
     quantity: Number,
     price: Number
 });
 
 var cartSchema = mongoose.Schema({
-	userID:{
+	userID: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	},

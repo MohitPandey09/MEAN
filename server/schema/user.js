@@ -12,6 +12,8 @@ var userSchema = mongoose.Schema({
     country: String,
     mobile: String,
     email_verified: Number,
+    isDeleted: { type: Number, default: 0 },
+    isBlocked: { type: Number, default: 0 },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
 });

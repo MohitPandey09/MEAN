@@ -1,4 +1,4 @@
-const connection = require('./connection');
+const connection = require('./config/connection');
 
 // select with data
 module.exports.dataQuery = (callback, sql, data) => {

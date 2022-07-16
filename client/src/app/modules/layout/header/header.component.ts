@@ -14,6 +14,7 @@ import { TokenService } from 'src/app/shared/services/token.service';
 
 export class HeaderComponent implements OnInit {
     public ASSETS_URL = environment.ASSETS_URL;
+    public isLoaded: boolean = false;
     public isLoggedIn: boolean;
     public userData: any;
     public categoryData: any;
@@ -36,7 +37,7 @@ export class HeaderComponent implements OnInit {
         this.api.getCategoryList().subscribe(
             (response) => {
                 this.handleCategoryList(response);
-                console.log('getCategpriesList', response);
+                console.log('Categories List', response);
             },
             (error) => {
                 console.log(error);
@@ -45,13 +46,13 @@ export class HeaderComponent implements OnInit {
     }
 
     handleCategoryList(response: any) {
-        if(response.statusCode == 1) {
+        if (response.statusCode == 1) {
             this.categoryData = response.responseData;
         }
     }
 
     logout() {
         this.tokenService.destroyToken();
-        this.router.navigate(['/login']);
+        this.router.navigate(['login']);
     }
 }

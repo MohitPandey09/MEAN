@@ -1,0 +1,104 @@
+<!-- Page Preloder
+<div *ngIf="!isLoaded" id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Header Section Begin -->
+<app-header></app-header>
+<!-- Header End -->
+
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                    <span>Shop</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+
+<!-- Product Shop Section Begin -->
+<section class="product-shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 order-1 order-lg-2">
+                <div class="product-show-option">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-7">
+                            <div class="select-option">
+                                <select class="sorting">
+                                    <option value="">Default Sorting</option>
+                                </select>
+                                <select class="p-show">
+                                    <option value="">Show:</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 text-right">
+                            <!-- <p>Show 01- 09 Of {{ productData.length }} Product</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="favourites.length; else emptyFav" class="product-list">
+                    <div class="row">
+                        <div *ngFor="let favourite of favourites" class="col-lg-4 col-sm-6">
+                            <div class="product-item">
+                                <div class="pi-pic">
+                                    <img src="{{ ASSETS_URL }}/img/products/product-1.jpg" alt="">
+                                    <!-- put after pi-pic->img for sale label -->
+                                    <div class="sale pp-sale">Sale</div>
+                                    <a (click)="markFavourite(favourite._id)" class="btn btn-default icon">
+                                        <i class="icon_heart" style="color: #e7ab3c;"></i>
+                                    </a>
+                                    <ul>
+                                        <li class="quick-view">
+                                            <a [routerLink]="['/product/details/' + favourite._id]" routerLinkActive="router-link-active" href="javascript:void(0);">+ Quick View</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pi-text">
+                                    <!-- <div class="catagory-name">{{ product.subcategory.name }}</div> -->
+                                    <a [routerLink]="['/product/details/' + favourite._id]"  href="javascript:void(0);">
+                                        <h5>{{ favourite.name }}</h5>
+                                    </a>
+                                    <div class="product-price">
+                                        {{ favourite.price | currency:'INR' }}<!--  for sale price -->
+                                        <!-- <span>$35.00</span> for original price -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #emptyFav>
+                    <div class="col-lg-12">
+                        <h1>List is empty</h1>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="cart-buttons">
+                            <a [routerLink]="['/home']" href="javascript:void(0);" class="primary-btn">
+                                Continue shopping
+                            </a>
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="loading-more">
+                    <i class="icon_loading"></i>
+                    <a href="#">
+                        Loading More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Shop Section End -->
+
+<!-- Footer Section Begin -->
+<app-footer></app-footer> -->
+<!-- Footer End -->

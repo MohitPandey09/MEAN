@@ -1,0 +1,46 @@
+.quantity {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 0;
+}
+.quantity .pd-cart {
+	margin: 0 0 0 10px;
+}
+.quantity-btn {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px 20px;
+  color: #ffffff;
+  background: #3a3d3f;
+  text-transform: uppercase;
+}
+.quantity-btn:hover {
+  background: #e7ab3c;
+  color: #fff;
+}
+.item-delete-btn{
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+.quantity__input {
+  width: 60px;
+  height: 47px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border: 1px solid #dee0ee;
+  background: #fff;
+  color: #8184a1;
+}
+.primary-btn {
+  border: none;
+}
+.primary-btn:hover {
+  color: white;
+}

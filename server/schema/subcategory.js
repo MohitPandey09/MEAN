@@ -1,13 +1,14 @@
 var mongoose = require('mongoose');
 
 var subcategorySchema = mongoose.Schema({
-    categoryID: [{
+    category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category',
-    }],
-    subcategoryName: String,
+    },
+    name: String,
     descripton: String,
     image: String,
+    isDeleted: { type: Number, default: 0 },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
 });

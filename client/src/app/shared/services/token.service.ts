@@ -7,11 +7,26 @@ export class TokenService {
     constructor() { }
 
     getToken() {
-        localStorage.getItem('token');
+        return localStorage.getItem('token');
     }
 
     setToken(token: any) {
-        localStorage.setItem('token', token);
+        JSON.stringify(localStorage.setItem('token', token));
+    }
+
+    getUserId() {
+        const user = JSON.parse(localStorage.getItem('userData')!);
+        return user.id;
+    }
+
+    getUsername() {
+        const user = JSON.parse(localStorage.getItem('userData')!);
+        return user.name;
+    }
+
+    getUserEmail() {
+        const user = JSON.parse(localStorage.getItem('userData')!);
+        return user.email;
     }
 
     destroyToken() {

@@ -10,7 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductCategoriesComponent implements OnInit {
     public ASSETS_URL: string = environment.ASSETS_URL;
-    public id: any;
+    public isLoaded: boolean = false;
+    public categoryID: any;
     public subCategoryData: Array<any> = [];
     public errorMsg!: any;
 
@@ -20,12 +21,12 @@ export class ProductCategoriesComponent implements OnInit {
         ) { }
 
     ngOnInit() {
-        this.id = this.activatedRoute.snapshot.paramMap.get('id');
+        this.categoryID = this.activatedRoute.snapshot.paramMap.get('id');
         this.getSubCategoryList();
     }
 
     getSubCategoryList() {
-        this.api.getSubCategoryList(this.id).subscribe(
+        this.api.getSubCategoryList(this.categoryID).subscribe(
             (response) => {
                 this.handleSubCategoryResponse(response);
             },
@@ -37,11 +38,13 @@ export class ProductCategoriesComponent implements OnInit {
 
     handleSubCategoryResponse(response: any) {
         if (response.statusCode === 1) {
-            console.log('subcat', response);
+            this.isLoaded = true;
+            console.log('Subcategory List', response);
             this.subCategoryData = response.responseData;
         }
         if (response.statusCode === 0) {
             // show modal with error here
+            this.isLoaded = true;
             this.errorMsg = response.message;
         }
     }

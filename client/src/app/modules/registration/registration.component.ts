@@ -12,6 +12,7 @@ import { MustMatch } from '../../shared/helpers/must-match.validator';
 })
 export class RegistrationComponent implements OnInit {
     public registerForm!: FormGroup;
+    public isLoaded: boolean = false;
     public submitted = false;
     public errorMsg = null;
     public user: User = {
@@ -73,9 +74,11 @@ export class RegistrationComponent implements OnInit {
     handleRegistrationResponse(response: any) {
         console.log(response);
         if (response.statusCode === 1) {
+            this.isLoaded = true;
             this.router.navigate(['login']);
         }
         if (response.statusCode === 0) {
+            this.isLoaded = true;
             this.errorMsg = response.message;
         }
     }

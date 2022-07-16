@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var categorySchema = mongoose.Schema({
-    categoryName: String,
+    name: String,
+    isDeleted: { type: Number, default: 0 },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now }
 });

@@ -2,26 +2,10 @@
 
 @BASE_URL = https://api.stripe.com
 
-@APP_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhbmRleW1wMTk5NkBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImFkbWluIiwiaWF0IjoxNjM5OTg4Nzc0LCJleHAiOjE2NDA1ODg3NzR9.91i36rm0qsK_6M4hRJMHewQt2zxkiTxKAvGaYq7vUyg
+@APP_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhbmRleW1wMTk5NkBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImFkbWluIiwiaWF0IjoxNjU3NjAwMjMwLCJleHAiOjE2NTgyMDAyMzB9.vdVS1nALuZDsIiiRz8oMGc8kk-P2OxXJRvSnRLpgAoM
 
-### REGISTER API REQUEST
-POST http://{{API_URL}}/register HTTP/1.1
-Content-Type: application/json
 
-{
-	"name": "Mohit",
-	"email": "mohitpmp3gmail.com",
-	"password": "123456",
-	"city": "Haldwani",
-	"state": "Uttarakhand",
-	"zip": "263139",
-	"country": "India",
-	"mobile": "7983848236",
-	"address": "xyz"	
-}
-
-### LOGIN API REQUEST
-
+### LOGIN API
 POST http://{{API_URL}}/login HTTP/1.1
 Content-Type: application/json
 
@@ -30,88 +14,89 @@ Content-Type: application/json
 	"password": "admin"
 }
 
-### GET CATEGORIES API REQUEST
+### REGISTER API
+POST http://{{API_URL}}/register HTTP/1.1
+Content-Type: application/json
+
+{
+	"name": "Mohit",
+	"email": "mohitpmp3@gmail.com",
+	"password": "123456",
+	"city": "Haldwani",
+	"state": "Uttarakhand",
+	"zip": "263139",
+	"country": "India",
+	"mobile": "7983848236",
+	"address": "xyz"
+}
+
+### GET CATEGORIES API
 
 GET http://{{API_URL}}/getCategories HTTP/1.1
-Authorization: Bearer {{APP_TOKEN}}
-
-### GET SUBCATEGORIES API REQUEST
-
-GET http://{{API_URL}}/getSubCategories HTTP/1.1
-Authorization: Bearer {{APP_TOKEN}}
-
-
-### GET ALL PRODUCTS API REQUEST
-
-GET http://{{API_URL}}/getProducts HTTP/1.1
-Authorization: Bearer {{APP_TOKEN}}
-
-### GET PRODUCT BY ID API REQUEST
-
-POST http://{{API_URL}}/getProductByID HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{APP_TOKEN}}
 
-{
-	"id": "61a2891ebc9d073c1cb836e0"
-}
+### GET SUBCATEGORIES API
 
-### GET PRODUCT DETAILS API REQUEST
-
-GET http://{{API_URL}}/getProductDetails HTTP/1.1
+GET http://{{API_URL}}/getSubCategoriesByID/6187fea4acbffaf7d01a3e26 HTTP/1.1
+Content-Type: application/json
 Authorization: Bearer {{APP_TOKEN}}
 
-### ADD ITEM TO CART
+### GET PRODUCT BY ID API
+
+GET http://{{API_URL}}/getProductsBySubcategoryID/61caf8207b480b2bfcf6d688 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{APP_TOKEN}}
+
+### GET PRODUCT DETAILS API
+
+GET http://{{API_URL}}/getProductDetails/6187feb6acbffaf7d01a3e2a HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{APP_TOKEN}}
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhbmRleW1wMTk5NkBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImFkbWluIiwiaWF0IjoxNjUxNzYwNTQ0LCJleHAiOjE2NTIzNjA1NDR9.yLZtycsCXOl04Rgb7dvtlrw0Ie-KCBQL1TX6Zukb6XA
+### ADD ITEM TO CART API
 POST http://{{API_URL}}/addItemToCart HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{APP_TOKEN}}
 
 {
-	"userID": "6187fe7cacbffaf7d01a3e23",
-	"items": {
-		"productID": "61a288e7bc9d073c1cb836df",
-		"quantity": 1,
-		"price": 20
-	}
+	"productID": "61d1bc25cfa792063ca5d86e"
 }
 
-### GET CART ITEMS
+### GET CART ITEMS API
 GET http://{{API_URL}}/getCartItems HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{APP_TOKEN}}
 
-{
-	"userID": "6187fe7cacbffaf7d01a3e23"
-}
-
-### DELETE CART ITEM BY ID
-DELETE http://{{API_URL}}/deleteCartItem HTTP/1.1
+### DELETE CART ITEM BY ID API
+DELETE http://{{API_URL}}/deleteCartItem/61d1bb34cfa792063ca5d86d HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{APP_TOKEN}}
 
-{
-	"userID": "6187fe7cacbffaf7d01a3e23",
-	"productID": "61a288e7bc9d073c1cb836df"	
-}
+### CHECK COUPON API
+GET http://{{API_URL}}/checkCoupon/xyz HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{APP_TOKEN}}
 
-### EMPTY CART
+### FAVOURITES API
+GET http://{{API_URL}}/favourite/61d1bb34cfa792063ca5d86d HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{APP_TOKEN}}
+
+### GET FAVOURITES API
+GET http://{{API_URL}}/getFavourites HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{APP_TOKEN}}
+
+### EMPTY CART API
 DELETE http://{{API_URL}}/emptyCart HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{APP_TOKEN}}
 
-{
-	"userID": "6187fe7cacbffaf7d01a3e23"
-}
-
-### CREATE PAYMENT INTENT
+### CREATE PAYMENT INTENT API
 
 POST http://{{API_URL}}/createPaymentIntent HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{APP_TOKEN}}
-
-{
-	"userID": "6187fe7cacbffaf7d01a3e23"
-}
-
 
 ###
