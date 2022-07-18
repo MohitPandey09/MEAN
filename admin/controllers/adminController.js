@@ -593,7 +593,7 @@ module.exports.editCoupon = async (req, res, next) => {
 }
 
 module.exports.updateCoupon = async (req, res, next) => {
-    let couponID = req.params.id;
+        let couponID = req.params.id;
     try {
         let coupon = await Coupon.findByIdAndUpdate(couponID, req.body, { new: true });
         if (coupon !== null) {
@@ -604,6 +604,22 @@ module.exports.updateCoupon = async (req, res, next) => {
     } catch (error) { 
         console.log('Server error', error);
         next(new Error('Server error, Something was wrong!'));
+    }
+}
+
+module.exports.activeNotActive = async (req, res, next) => {
+    let { id, isActive } = req.params;
+    let updateIsActive = Number(isActive) ? 0 : 1;
+    try {
+        let coupon = await Coupon.findByIdAndUpdate(id, { isActive: updateIsActive }, { new: true });
+        if (coupon !== null) {
+            res.redirect('/admin/coupons')
+        } else {
+            res.json({ message: 'Coupon not found' })
+        }
+    } catch (error) {
+        console.log('Server error: ', error);
+        next(new Error('Server error, Something was wrong!'));        
     }
 }
 
@@ -620,4 +636,10 @@ module.exports.deleteCoupon = async (req, res, next) => {
         console.log('Server error', error);
         next(new Error('Server error, Something was wrong!'));
     }
+}
+
+// ------------------------------------ Payments controller ------------------------------------
+
+module.exports.getPayments = async (req, res, next) => {
+    res.send("hi");
 }

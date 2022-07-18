@@ -56,7 +56,7 @@ router.post('/subcategory/add',	upload.single('image'), function (req, res, err,
 	if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
 		return res.send({ message: 'File size is greater than 5mb' })
 	} else if(err) {
-		return res.send({ message: `Unknown error occured: ${err}` })
+		return res.send({ message: `Unknown error occured: ${ err }` })
 	} next
 }, adminController.addSubcategory);
 
@@ -66,7 +66,7 @@ router.post('/subcategory/:id/update', upload.single('image'), function (req, re
 	if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
 		return res.send({ message: 'File size is greater than 5mb' })
 	} else if (err) {
-		return res.send({ message: `Unknown error occured: ${err}` })
+		return res.send({ message: `Unknown error occured: ${ err }` })
 	} next
 }, adminController.updateSubcategory);
 
@@ -84,7 +84,7 @@ router.post('/product/add', upload.single('image'), function(req, res, err, next
 	if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
 		return res.send({ message: 'File size is greater than 5mb' })
 	} else if (err) {
-		return res.send({ message: `Unknown error occured: ${err}` })
+		return res.send({ message: `Unknown error occured: ${ err }` })
 	} next
 }, adminController.addProduct);
 
@@ -94,7 +94,7 @@ router.post('/product/:id/update', upload.single('image'), function(req, res, er
 	if (err instanceof multer.MulterError && err.code === 'LIMIT_FILE_SIZE') {
 		return res.send({ message: 'File size is greater than 5mb' })
 	} else if (err) {
-		return res.send({ message: `Unexpected error occured: ${err}` })
+		return res.send({ message: `Unexpected error occured: ${ err }` })
 	} next
 }, adminController.updateProduct);
 
@@ -114,7 +114,25 @@ router.get('/coupon/:id/edit', adminController.editCoupon);
 
 router.post('/coupon/:id/update', adminController.updateCoupon);
 
+router.get('/coupon/:id/activeNotActive/:isActive', adminController.activeNotActive);
+
 router.get('/coupon/:id/delete', adminController.deleteCoupon);
+
+// ------------------------------------ Payment routes ------------------------------------
+
+router.get('/payments', adminController.getPayments);
+
+// router.get('/payment/add', (req, res) => {
+// 	res.render('payments/add-payment', { title: 'Add Payment' });
+// });
+
+// router.post('/payment/add', adminController.addPayment);
+
+// router.get('/payment/:id/edit', adminController.editPayment);
+
+// router.post('/payment/:id/update', adminController.updatePayment);
+
+// router.get('/payment/:id/delete', adminController.deletePayment);
 
 // ------------------------------------ Invalid routes ------------------------------------
 

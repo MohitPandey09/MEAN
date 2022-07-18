@@ -69,6 +69,13 @@
 												<tr>
 													<td><%= coupon.name %></td>
 													<td>
+                                                        <a href="<%= `/admin/coupon/${coupon._id}/activeNotActive/${coupon.isActive}` %>" class="btn btn-warning">
+                                                            <% if(coupon.isActive) { %>
+                                                                    <i class="fas fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Deactivate"></i>
+                                                                <% } else{ %>
+                                                                    <i class="fas fa-eye-slash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Activate"></i>
+                                                            <% } %>
+                                                        </a>
                                                         <a href="<%= `/admin/coupon/${coupon._id}/edit` %>" class="btn btn-success">
                                                             <i class="fas fa-edit" aria-hidden="true"></i>
                                                         </a>
