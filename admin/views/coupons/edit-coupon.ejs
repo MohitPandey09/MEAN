@@ -46,20 +46,70 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form method="POST" action="<%= `/admin/category/${category._id}/update` %>" class="form-horizontal">
+                            <form method="POST" action="<%= `/admin/coupon/${coupon._id}/update` %>" class="form-horizontal">
                                 <div class="card-body">
-                                    <!-- <h4 class="card-title">Personal Info</h4> -->
+
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-3 text-right control-label col-form-label">Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" value="<%= category.name %>" class="form-control" id="name" name="name" placeholder="Name">
+                                            <input type="text" value="<%= coupon.name %>" class="form-control" id="name" name="name" placeholder="Name">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="discount" class="col-sm-3 text-right control-label col-form-label">Discount (in %)</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<%= coupon.discount %>" class="form-control" id="discount" name="discount" placeholder="Discount">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3 align-items-center">
+                                        <label for="discount" class="col-sm-3 text-right control-label col-form-label">Max. applicable price</label>
+                                        <div class="col-md-9">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">&#x20B9;</span>
+                                                </div>
+                                                <input type="text" value="<%= coupon.maxApplicablePrice %>" id="maxApplicablePrice" name="maxApplicablePrice" class="form-control" placeholder="Max. applicable price"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="maxUses" class="col-sm-3 text-right control-label col-form-label">Max. uses</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" value="<%= coupon.maxUses %>" class="form-control" id="maxUses" name="maxUses" placeholder="Max. uses">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="expiresOn" class="col-sm-3 text-right control-label col-form-label">Expire on</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="expiresOn" name="expiresOn" placeholder="dd/mm/yyyy"
+                                                value="<%= new Date(coupon.expiresOn).getMonth()+1 %>/<%= new Date(coupon.expiresOn).getDate() %>/<%= new Date(coupon.expiresOn).getFullYear() %>"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text h-100"><i class="mdi mdi-calendar"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Active</label>
+                                        <div class="col-md-9">
+                                            <select name="isActive" id="isActive" class="form-control custom-select" style="width: 100%; height:36px;">
+                                                <option value="<%= coupon.isActive %>" selected disabled><%= coupon.isActive ? "False" : "True" %></option>
+                                                <option value="1">True</option>
+                                                <option value="0">False</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="border-top">
-                                    <div class="card-body">
-                                        <button type="submit" class="btn btn-primary">Update</button>
-                                        <a href="admin/categories" class="btn btn-secondary">Back</a>
+                                    <div class="card-body save-btn-row">
+                                        <input type="submit" class="btn btn-primary" value="Update">
+                                        <a href="/admin/coupons" class="btn btn-secondary">Back</a>
                                     </div>
                                 </div>
                             </form>
@@ -134,7 +184,7 @@
         });
         /*datwpicker*/
         jQuery('.mydatepicker').datepicker();
-        jQuery('#datepicker-autoclose').datepicker({
+        jQuery('#expiresOn').datepicker({
             autoclose: true,
             todayHighlight: true
         });

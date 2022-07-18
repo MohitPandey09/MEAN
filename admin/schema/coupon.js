@@ -7,7 +7,7 @@ var couponSchema = mongoose.Schema({
 	userApplied: Number,
 	maxUses: Number,
 	isActive: Number,
-	isDeleted: Number,
+	isDeleted: { type: Number, default: 0 },
 	expiresOn: { type: Date },
 	created_at: { type: Date, default: Date.now },
 	updated_at: { type: Date, default: Date.now }

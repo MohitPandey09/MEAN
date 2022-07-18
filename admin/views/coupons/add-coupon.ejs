@@ -54,35 +54,53 @@
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
-                                        <label for="discount" class="col-sm-3 text-right control-label col-form-label">Discount</label>
+                                        <label for="discount" class="col-sm-3 text-right control-label col-form-label">Discount (in %)</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="discount" name="discount" placeholder="Discount">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="maxApplicablePrice" class="col-sm-3 text-right control-label col-form-label">Max. applicable price</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="maxApplicablePrice" name="maxApplicablePrice" placeholder="Max. applicable price">
+
+                                    <div class="row mb-3 align-items-center">
+                                        <label for="discount" class="col-sm-3 text-right control-label col-form-label">Max. applicable price</label>
+                                        <div class="col-md-9">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">&#x20B9;</span>
+                                                </div>
+                                                <input type="text" id="maxApplicablePrice" name="maxApplicablePrice" class="form-control" placeholder="Max. applicable price"/>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
                                         <label for="maxUses" class="col-sm-3 text-right control-label col-form-label">Max. uses</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="maxUses" name="maxUses" placeholder="Max. uses">
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
-                                        <label for="expiresAt" class="col-sm-3 text-right control-label col-form-label">Expire on</label>
+                                        <label for="expiresOn" class="col-sm-3 text-right control-label col-form-label">Expire on</label>
                                         <div class="col-sm-9">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="expiresAt" placeholder="mm/dd/yyyy"/>
+                                                <input type="text" class="form-control" id="expiresOn" name="expiresOn" placeholder="dd/mm/yyyy"/>
                                                 <div class="input-group-append">
-                                                    <span class="input-group-text h-100">
-                                                        <i class="mdi mdi-calendar"></i>
-                                                    </span> 
+                                                    <span class="input-group-text h-100"><i class="mdi mdi-calendar"></i></span>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 text-right control-label col-form-label">Active</label>
+                                        <div class="col-md-9">
+                                            <select name="isActive" id="isActive" class="form-control custom-select" style="width: 100%; height:36px;">
+                                                <option selected disabled>Select</option>
+                                                    <option value="1">True</option>
+                                                    <option value="0">False</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +181,7 @@
         });
         /*datwpicker*/
         jQuery('.mydatepicker').datepicker();
-        jQuery('#expiresAt').datepicker({
+        jQuery('#expiresOn').datepicker({
             autoclose: true,
             todayHighlight: true
         });

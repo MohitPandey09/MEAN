@@ -509,7 +509,7 @@ module.exports.updateProduct = async (req, res, next) => {
     try {
         let product = await Product.findByIdAndUpdate(productID, updatedProductData, { new: true });
         if (product !== null) {
-            res.redirect('/admin/products')
+            res.redirect('/admin/products');
         } else {
             res.json({ message: 'Can`t update' })
         }
@@ -556,7 +556,6 @@ module.exports.addCoupon = async (req, res, next) => {
         name: 'required',
         discount: 'required',
         maxApplicablePrice: 'required',
-        userApplied: 'required',
         maxUses: 'required',
         expiresOn: 'required'
     }
@@ -581,13 +580,44 @@ module.exports.addCoupon = async (req, res, next) => {
 }
 
 module.exports.editCoupon = async (req, res, next) => {
-    
+    let couponID = req.params.id;
+    try {
+        let coupon = await Coupon.findOne({ _id: couponID }).exec();
+        if (coupon !== null) {
+            res.render('coupons/edit-coupon', { coupon: coupon, title: 'Edit coupon' });
+        }
+    } catch (error) {
+        console.log('Server error', error);
+        next(new Error('Server error, Something was wrong!'));        
+    }
 }
 
 module.exports.updateCoupon = async (req, res, next) => {
-    
+    let couponID = req.params.id;
+    try {
+        let coupon = await Coupon.findByIdAndUpdate(couponID, req.body, { new: true });
+        if (coupon !== null) {
+            res.redirect('/admin/coupons');
+        } else {
+            res.json({ message: `Can't update` })
+        }
+    } catch (error) { 
+        console.log('Server error', error);
+        next(new Error('Server error, Something was wrong!'));
+    }
 }
 
 module.exports.deleteCoupon = async (req, res, next) => {
-    
+    let couponID = req.params.id;
+    try {
+        let coupon = await Coupon.findByIdAndUpdate(couponID, { isDeleted: 1 }, { new: true });
+        if (coupon !== null) {
+            res.redirect('/admin/coupons');
+        } else {
+            res.json({ message: `Coupon doesn't found`})
+        }
+    } catch (error) {
+        console.log('Server error', error);
+        next(new Error('Server error, Something was wrong!'));
+    }
 }
