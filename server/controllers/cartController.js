@@ -113,7 +113,7 @@ module.exports.createPaymentIntent = async (req, res, next) => {
 		payment_method_types: ['card'],
 	});
 	if (paymentIntent.client_secret) {
-		// delete cart items
+		// TODO: delete cart items
 		res.status(200).json({ clientKey: paymentIntent.client_secret })
 	}
 }
@@ -199,13 +199,14 @@ module.exports.checkCoupon = async (req, res, next) => {
 	const { couponCode } = req.params;
 	try {
 		// COMMENT: check coupon is active and available
-		let coupon = await Coupon.findOne({ coupon: couponCode, isActive: true });
+		let coupon = await Coupon.findOne({ coupon: couponCode, isActive: 1 });
 	
 		if (coupon !== null) {
 			// COMMENT: get cart for user
 			let cart = await Cart.findOne({ userID: req.user._id });
 			if (cart !== null) {
 				// COMMENT: check cart value is valid for coupon
+				// TODO: logic for applicableprice should be % of totalprice
 				if (cart.totalPrice >= coupon.applicablePrice) {
 					// COMMENT: calculate discount
 					let discountAmount, finalPrice;

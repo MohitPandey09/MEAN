@@ -588,12 +588,12 @@ module.exports.editCoupon = async (req, res, next) => {
         }
     } catch (error) {
         console.log('Server error', error);
-        next(new Error('Server error, Something was wrong!'));        
+        next(new Error('Server error, Something was wrong!'));
     }
 }
 
 module.exports.updateCoupon = async (req, res, next) => {
-        let couponID = req.params.id;
+    let couponID = req.params.id;
     try {
         let coupon = await Coupon.findByIdAndUpdate(couponID, req.body, { new: true });
         if (coupon !== null) {
@@ -601,7 +601,7 @@ module.exports.updateCoupon = async (req, res, next) => {
         } else {
             res.json({ message: `Can't update` })
         }
-    } catch (error) { 
+    } catch (error) {
         console.log('Server error', error);
         next(new Error('Server error, Something was wrong!'));
     }
